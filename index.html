@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remember | 那些年的时光</title>
+    <!-- 引入外部样式库 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- 自定义样式（直接内嵌，避免外部文件加载问题） -->
+    <style>
+        /* 全局重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            overflow-x: hidden; /* 解决横向滚动条 */
+        }
+        /* 轮播图核心样式 - 解决尺寸/留白问题 */
+        #memoryCarousel {
+            width: 100vw; /* 占满屏幕宽度 */
+            max-width: 100%; /* 防止溢出 */
+        }
+        .carousel-img {
+            width: 100vw !important; /* 强制占满宽度 */
+            height: 60vh; /* 固定轮播图高度，适配所有屏幕 */
+            object-fit: cover; /* 图片等比缩放，填满容器（不会变形） */
+            filter: brightness(0.9);
+        }
+        .carousel-caption {
+            background: rgba(0,0,0,0.5);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        /* 音乐控件样式 */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(118, 75, 162, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .music-control audio {
+            width: 200px;
+        }
+        /* 标题区域 */
+        .hero-section {
+            padding: 50px 0;
+            text-align: center;
+            background: #f8f9fa;
+        }
+        /* 卡片样式 */
+        .memory-section {
+            padding: 40px 0;
+        }
+        .memory-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            height: 100%;
+        }
+        .memory-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .memory-content {
+            padding: 20px;
+        }
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .carousel-img {
+                height: 40vh;
+            }
+            .music-control {
+                flex-direction: column;
+                padding: 10px;
+                right: 50%;
+                transform: translateX(50%);
+                bottom: 10px;
+            }
+            .music-control audio {
+                width: 180px;
+                margin-top: 8px;
+            }
+        }
+        
+    </style>
+         <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 轮播图（移除data-bs-ride，避免重复初始化） -->
+    <div id="memoryCarousel" class="carousel slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#memoryCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+            <button type="button" data-bs-target="#memoryCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#memoryCarousel" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#memoryCarousel" data-bs-slide-to="3"></button>
+            <button type="button" data-bs-target="#memoryCarousel" data-bs-slide-to="4"></button>
+        </div>
+        <div class="carousel-inner">
+            <!-- 轮播项1：移除h-30，统一样式 -->
+            <div class="carousel-item active">
+                <img src="picture/ddd6013c696b90aa2c71ecc2e624dc9c.jpg" class="d-block w-100 carousel-img" alt="青春回忆轮播1">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>草原三剑客</h5>
+                    <p>左钊中熊右栋</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="picture/c01cec0c3b189c9bcb7c3994b627a0d2.jpg" class="d-block w-100 carousel-img" alt="青春回忆轮播2">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>十几年童颜未变</h5>
+                    <p>有感觉吗?</p>
+                </div>
+            </div>
+            <!-- 修正轮播图3-5的路径：统一放到picture文件夹 -->
+            <div class="carousel-item">
+                <img src="picture/c03d3fe54a075830ed464c8ef0f97ed7.jpg" class="d-block w-100 carousel-img" alt="青春回忆轮播3">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>吃肉了妖无二</h5>
+                    <p>那些瞬间永远定格</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="picture/0a84dcd96351b9284280caaa8426b79a.jpg" class="d-block w-100 carousel-img" alt="青春回忆轮播4">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>天罡看完喝老鸭汤了</h5>
+                    <p>第一次酒店 那个冬天</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="picture/a44d81480320230ea6d6664c6774f5e5.jpg" class="d-block w-100 carousel-img" alt="青春回忆轮播5">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>囧来吃牛蛙了</h5>
+                    <p>康康来了</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#memoryCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#memoryCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- 音乐播放器 -->
+    <div class="music-control">
+        <i class="bi bi-music-note-beamed"></i>
+        <audio id="background-music" loop controls>
+            <source src="picture/M800002cI2Zl4BYhpi.mp3" type="audio/mpeg">
+            您的浏览器不支持音频播放
+        </audio>
+    </div>
+
+    <!-- 标题区域 -->
+    <header class="hero-section">
+        <div class="container">
+            <h1>江熊张钊王On的窝</h1>
+            <p>"我好像察觉到了什么，于是开始疯狂记录"</p>
+        </div>
+    </header>
+
+    <!-- 纪念册内容（修正卡片图片路径） -->
+    <section class="memory-section">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center mb-4">
+                    <h2 class="section-title">王家大院</h2>
+                    <hr class="section-divider">
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="memory-card">
+                        <img src="picture/IMG_20240827_012228.jpg" alt="青春回忆1" class="memory-img">
+                        <div class="memory-content">
+                            <h3>药老来了！</h3>
+                            <p>暑假期间 2024-08-27</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="memory-card">
+                        <img src="picture/IMG_20240817_190608.jpg" alt="青春回忆2" class="memory-img">
+                        <div class="memory-content">
+                            <h3>一桌子菜</h3>
+                            <p>味道是真不错-2024-08-17</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="memory-card">
+                        <img src="picture/e1b0205a57dc512896aeb74922fb9513.jpg" alt="青春回忆3" class="memory-img">
+                        <div class="memory-content">
+                            <h3>鸡腿</h3>
+                            <p>香的崩</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 其他卡片同理，路径统一改为picture/memory-x.jpg -->
+            <div class="row mb-5">
+                <div class="col-12 text-center mb-4">
+                    <h2 class="section-title">仅以此站 纪念回忆</h2>
+                    <hr class="section-divider">
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="memory-card">
+                        <img src="picture/IMG_20240808_185715.jpg" alt="青春回忆4" class="memory-img">
+                        <div class="memory-content">
+                            <h3>明星来了，有感觉吗  </h3>
+                            <p>无数个深夜，我们聊着梦想和未来。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="memory-card">
+                        <img src="picture/Cache_-4930618aeb0b0b64.jpg" alt="青春回忆5" class="memory-img">
+                        <div class="memory-content">
+                            <h3>太和帮的</h3>
+                            <p>龙塘村旅游</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="memory-card">
+                        <img src="picture/Cache_2336d2122ba8c938.jpg" alt="青春回忆6" class="memory-img">
+                        <div class="memory-content">
+                            <h3>居委会酒店</h3>
+                            <p>学生来的</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center mb-4">
+                    <h2 class="section-title">网吧之旅</h2>
+                    <hr class="section-divider">
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="memory-card">
+                        <img src="picture/IMG_20240813_021659.jpg" alt="青春回忆7" class="memory-img">
+                        <div class="memory-content">
+                            <h3>杰拉</h3>
+                            <p>一住住半个月  2024-08-13</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="memory-card">
+                        <img src="picture/IMG_20230809_004632.jpg" alt="青春回忆8" class="memory-img">
+                        <div class="memory-content">
+                            <h3>盖盖</h3>
+                            <p>出生以来睡的最艰难的一次 不如睡大街 2023-08-09</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="memory-card">
+                        <img src="picture/IMG_20240828_003023.jpg" alt="青春回忆9" class="memory-img">
+                        <div class="memory-content">
+                            <h3>这张到宏锦了？忘记了</h3>
+                            <p>初窥门径（酒店）</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="memory-card">
+                        <img src="picture/fbf985593fa0c1179db5065a67eb6e6d.jpg" alt="青春回忆9" class="memory-img">
+                        <div class="memory-content">
+                            <h3>ZZ  最舒服的一次了</h3>
+                            <p>贵的东西缺点只有贵</p>
+                        </div>
+                    </div>
+                </div>  
+                 <div class="col-md-6 col-lg-4">
+                    <div class="memory-card">
+                        <img src="picture/151cc4648a8fdbe5fc33a8b70dd99cb0.jpg" alt="青春回忆9" class="memory-img">
+                        <div class="memory-content">
+                            <h3>ZZ吃的大餐</h3>
+                            <p>感觉，比跟天乐聚会舒服  除了小龙虾疑似泥有点没洗干净  吃的最爽的一次</p>
+                        </div>
+                    </div>
+                </div> 
+                 <div class="col-md-6 col-lg-4">
+                    <div class="memory-card">
+                        <img src="picture/IMG_20240814_191333.jpg" alt="青春回忆9" class="memory-img">
+                        <div class="memory-content">
+                            <h3>睡觉咯</h3>
+                            <p>忘记哪个电竞酒店了，应该还不错  2024-8-14</p>
+                        </div>
+                    </div>
+                </div> 
+
+                </div> 
+                 <div class="col-md-6 col-lg-4">
+                    <div class="memory-card">
+                        <img src="picture/Screenshot_20231225_194237.jpg" alt="青春回忆9" class="memory-img">
+                        <div class="memory-content">
+                            <h3>初代锦园</h3>
+                            <p>初窥门径  2023-12-25</p>
+                        </div>
+                    </div>
+                </div>                                                                            
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <p>囧张钊王on小窝 &copy; 三剑客 | 那些年，一起走过的时光</p>
+            <p class="mt-2">愿我们历尽千帆，归来仍是少年</p>
+        </div>
+    </footer>
+
+    <!-- 引入JS + 初始化轮播（仅一次） -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 页面加载完成后初始化轮播
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化轮播（唯一入口，无重复）
+            const carousel = new bootstrap.Carousel(document.getElementById('memoryCarousel'), {
+                interval: 5000,
+                pause: 'hover',
+                wrap: true,
+                touch: true
+            });
+
+            // 音乐播放兼容（解决自动播放限制）
+            const audio = document.getElementById('background-music');
+            document.addEventListener('click', function() {
+                audio.play().catch(err => console.log('请手动点击播放音乐'));
+            }, { once: true });
+        });
+    </script>
+</body>
+</html>

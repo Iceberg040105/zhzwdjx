@@ -1,0 +1,272 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* 轮播图样式 */
+.carousel-img {
+    height: 100vh;
+    object-fit: cover;
+    filter: brightness(0.85);
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.carousel-caption h5 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.carousel-caption p {
+    font-size: 1.2rem;
+}
+
+/* 顶部标题区域 */
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 60px 0 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section h1 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.hero-section p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+/* 音乐控制区域 */
+.music-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(118, 75, 162, 0.9);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.music-control audio {
+    width: 200px;
+}
+
+/* 纪念册内容区域 */
+.memory-section {
+    padding: 80px 0 60px;
+}
+
+.section-title {
+    color: #764ba2;
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
+.section-divider {
+    width: 80px;
+    height: 3px;
+    background: #764ba2;
+    margin: 15px auto;
+    opacity: 0.8;
+}
+
+/* 优化卡片布局，改为flex确保高度统一 */
+.memory-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.memory-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* 优化图片缩放原点和过渡效果 */
+.memory-img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    transform-origin: center;
+}
+
+.memory-card:hover .memory-img {
+    transform: scale(1.05);
+    filter: brightness(0.95);
+}
+
+.memory-content {
+    padding: 25px;
+    flex: 1; /* 让内容区域自动填充剩余高度 */
+}
+
+.memory-content h3 {
+    color: #764ba2;
+    margin-bottom: 15px;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.memory-content p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* 页脚样式 */
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 60px;
+}
+
+footer p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* 响应式适配 - 平板 (≥768px 且 <992px) */
+@media (max-width: 991.98px) and (min-width: 768px) {
+    .carousel-img {
+        height: 60vh;
+    }
+    
+    .music-control audio {
+        width: 180px;
+    }
+}
+
+/* 响应式适配 - 手机横屏 (≥576px 且 <768px) */
+@media (max-width: 767.98px) and (min-width: 576px) {
+    .carousel-img {
+        height: 50vh;
+    }
+    
+    .carousel-caption h5 {
+        font-size: 1.5rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 1rem;
+    }
+    
+    .hero-section {
+        padding: 40px 0 30px;
+    }
+    
+    .hero-section h1 {
+        font-size: 2.2rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .memory-img {
+        height: 220px;
+    }
+    
+    .music-control {
+        bottom: 15px;
+        right: 15px;
+        padding: 8px 15px;
+    }
+    
+    .music-control audio {
+        width: 150px;
+    }
+}
+
+/* 响应式适配 - 手机竖屏 (<576px) */
+@media (max-width: 575.98px) {
+    .carousel-img {
+        height: 40vh;
+    }
+    
+    .carousel-caption {
+        padding: 10px;
+    }
+    
+    .hero-section h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-section p {
+        font-size: 1.1rem;
+    }
+    
+    .memory-content {
+        padding: 20px 15px;
+    }
+    
+    .memory-content h3 {
+        font-size: 1.4rem;
+    }
+    
+    .music-control {
+        flex-direction: column;
+        padding: 10px;
+        border-radius: 15px;
+        align-items: center;
+        width: fit-content;
+        margin: 0 auto;
+    }
+    
+    .music-control audio {
+        width: 180px;
+        margin-top: 8px;
+    }
+    
+    footer {
+        padding: 30px 15px;
+    }
+}
+
+/* 超小屏幕适配 (<375px) */
+@media (max-width: 374.98px) {
+    .carousel-img {
+        height: 35vh;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .memory-img {
+        height: 200px;
+    }
+}
